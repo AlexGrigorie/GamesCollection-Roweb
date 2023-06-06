@@ -1,0 +1,112 @@
+﻿@model GamesCollection.Models.GameDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.Producer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.Producer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.Platform)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.Platform)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.Region)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.Region)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.ReleaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.Genre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.Genre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Game.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Game.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Game.Id" class="btn btn-success">Edit</a>
+    <a asp-action="Index" class="btn btn-outline-primary">Back to List</a>
+</div>
+
+<h1 class="mb-3 text-center text-uppercase">Reviews</h1>
+@if (Model.Reviews.Count() > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="table-dark">Username</th>
+                <th class="table-dark">Review</th>
+                <th class="table-dark">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var review in Model.Reviews)
+            {
+                <tr>
+                    <td>@review.Username</td>
+                    <td>@review.Review</td>
+                    <td>@review.ReviewDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p class="text-center text-uppercase fw-bold">Let us know about your opinion. The form is down below</p>
+}
+<h1>Review</h1>
+
+<h4>Help us to improve our games</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Games" asp-action="AddNewReview" asp-route-gameId="@Model?.Game.Id" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Review.Username" class="control-label"></label>
+                <input asp-for="Review.Username" class="form-control" />
+                <span asp-validation-for="Review.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Review.Review" class="control-label"></label>
+                <textarea asp-for="Review.Review" class="form-control" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+                <span asp-validation-for="Review.Review" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send Review" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>

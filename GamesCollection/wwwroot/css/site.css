@@ -1,0 +1,43 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.game-description {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+.games-collection-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+.rounded-image {
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+    .fade-in.loaded {
+        opacity: 1;
+    }
